@@ -8,3 +8,9 @@ jobs:
     steps:
       - name: Say Hello
         run: echo "Welcome to GH-200 session"
+
+      - name: chekkout
+        uses: actions/checkout@v6
+
+      - name: list files
+        run: ls -la
