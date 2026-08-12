@@ -10,7 +10,7 @@ jobs:
       - name: ⏱️ Step with Timeout
         timeout-minutes: 1           # Step timeout
         run: |
-          echo "This step must complete in 1 minute
+          echo "This step must complete in 1 minute"
 
   test:
     runs-on: ${{ matrix.os }}
