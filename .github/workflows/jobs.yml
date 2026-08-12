@@ -21,8 +21,9 @@ jobs:
         uses: actions/checkout@v4
       - name: 🔨 Simulate Build
         run: |
+          mkdir -p build-output
           echo "Building the application..."
-          echo "Build completed at $(date)" > build-report.txt
+          echo "Build completed at $(date)" > build-output/build-report.txt
           echo "Commit: $GITHUB_SHA" >> build-output/build-report.txt
           echo "Branch: $GITHUB_REF_NAME" >> build-output/build-report.txt
       - name: upload artifcat
