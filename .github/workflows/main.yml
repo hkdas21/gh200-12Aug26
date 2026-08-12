@@ -21,4 +21,9 @@ jobs:
           figlet "GH-200 CoHack"
           echo "-----------------"
           figlet -f digital "GitHub Action"
+
+      - name: Run Shell Script
+        run: |
+          chmod +x scripts/greet.sh
+          ./scripts/greet.sh
       
