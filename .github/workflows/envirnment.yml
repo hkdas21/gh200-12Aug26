@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'        # same everywhere — no need for a var
+  RETRY_COUNT: 3
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: staging              # no approval → runs immediately
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Deploy
+        env:
+          TARGET: ${{ vars.API_URL }}     # https://staging.myapp.com
+          KEY:    ${{ secrets.API_KEY }}  # staging key
+        run: ./deploy.sh --retries "$RETRY_COUNT"
+
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    environment: production           # ⏸ PAUSES here for @lead-dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        env:
+          TARGET: ${{ vars.API_URL }}     # https://myapp.com
+          KEY:    ${{ secrets.API_KEY }}  # prod key
+        run: ./deploy.sh --retries "$RETRY_COUNT"
