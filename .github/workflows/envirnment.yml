@@ -21,7 +21,7 @@ jobs:
         env:
           TARGET: ${{ vars.API_URL }}     # https://staging.myapp.com
           KEY:    ${{ secrets.API_KEY }}  # staging key
-        run: ./deploy.sh --retries "$RETRY_COUNT"
+        run: ./scripts/greet.sh --retries "$RETRY_COUNT"
 
   deploy-production:
     needs: deploy-staging
@@ -33,4 +33,4 @@ jobs:
         env:
           TARGET: ${{ vars.API_URL }}     # https://myapp.com
           KEY:    ${{ secrets.API_KEY }}  # prod key
-        run: ./deploy.sh --retries "$RETRY_COUNT"
+        run: ./scripts/greet.sh --retries "$RETRY_COUNT"
