@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: '20'        # same everywhere — no need for a var
+  NODE_VERSION: '24'        # same everywhere — no need for a var
   RETRY_COUNT: 3
 
 jobs:
